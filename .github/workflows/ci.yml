@@ -1,0 +1,50 @@
+name: CI
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize]
+    paths:
+      - "**.yml"
+      - "**.go"
+  workflow_dispatch:
+permissions: write-all
+
+jobs:
+  go-test:
+    runs-on: ubuntu-latest
+    steps:
+      # ワークフローの可視化
+      - uses: Kesin11/actions-timeline@v2
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      # setup-go + cache + Lint + PRコメント
+      - name: Check lint
+        uses: reviewdog/action-golangci-lint@v2
+        with:
+          go_version_file: go.mod
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
+          level: error
+          filter_mode: nofilter
+          golangci_lint_flags: "--config=.golangci.toml"
+          fail_on_error: true
+      - name: Check vulnerability
+        run: make vuln
+        shell: bash
+      # ビルド
+      - name: Build
+        run: make build
+        shell: bash
+      # テスト実行
+      - name: Run Tests
+        run: make ci-test
+      - name: create report
+        uses: k1LoW/octocov-action@v1
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          fail_ci_if_error: true
+          token: ${{ secrets.CODECOV_TOKEN }}

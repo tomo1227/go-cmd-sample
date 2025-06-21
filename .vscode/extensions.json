@@ -1,0 +1,29 @@
+{
+  "recommendations": [
+    // Go
+    "golang.go",
+    "premparihar.gotest",
+    // yaml, jsonc, json, toml
+    "redhat.vscode-yaml",
+    "esbenp.prettier-vscode",
+    "tamasfe.even-better-toml",
+    // Git関連
+    "GitHub.vscode-pull-request-github",
+    "github.vscode-github-actions",
+    "mhutchie.git-graph",
+    "eamodio.gitlens",
+    "seatonjiang.gitmoji-vscode",
+    // markdown
+    "yzhang.markdown-all-in-one",
+    "DavidAnson.vscode-markdownlint",
+    "shd101wyy.markdown-preview-enhanced",
+    // その他
+    "streetsidesoftware.code-spell-checker",
+    "naumovs.color-highlight",
+    "Gruntfuggly.todo-tree",
+    "oderwat.indent-rainbow",
+    "ms-vsliveshare.vsliveshare",
+    "usernamehw.errorlens",
+    "formulahendry.code-runner"
+  ]
+}
