@@ -17,7 +17,7 @@ jobs:
     steps:
       # ワークフローの可視化
       - uses: Kesin11/actions-timeline@v2
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ref: ${{ github.event.pull_request.head.sha }}
       # setup-go + cache + Lint + PRコメント
