@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # ワークフローの可視化
-      - uses: Kesin11/actions-timeline@v2
+      - uses: Kesin11/actions-timeline@v3
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
